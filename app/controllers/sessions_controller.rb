@@ -17,8 +17,11 @@ class SessionsController < ApplicationController
     params = {'api_key' => ENV['api_key'], 'user' => user_name, 'password' => password}
     url = URI.parse('https://t1qa13.mediamath.com/api/v2.0/login')
     resp, data = Net::HTTP.post_form(url, params)
+
+    puts resp.body
+
     # if @response.code == 200   
-    if Hash.from_xml(resp.body)["result"]["status"]["code"] == "ok"
+    if resp.body.include?("ok")
       @user = User.find_or_create_by(:name => user_name)
       login(@user)
       redirect_to root_path
