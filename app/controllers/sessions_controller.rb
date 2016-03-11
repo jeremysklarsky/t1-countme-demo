@@ -7,13 +7,13 @@ class SessionsController < ApplicationController
     user_name = params[:user][:user_name]
     password = params[:user][:password]
     @response = Unirest.post "https://t1qa13.mediamath.com/api/v2.0/login",
-    # headers:{ "Accept" => "application/json" },
+    headers:{ "Accept" => "application/json" },
     parameters:{
       "api_key" => ENV['api_key'],
       "user" => user_name,
       "password" => password
-    } 
-    
+    }
+        
     if @response.code == 200   
       @user = User.find_or_create_by(:name => params[:user][:user_name])
       login(@user)
