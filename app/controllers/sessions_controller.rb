@@ -12,10 +12,10 @@ class SessionsController < ApplicationController
       "user" => user_name,
       "password" => password
     }
+    
+    xml  = Nokogiri::XML(@response.body)
 
-    result = Hash.from_xml(@response.body)
-
-    if result["result"]["status"]["code"] == "ok"
+    if xml.children[0].children[-2].attributes["code"].value == "ok"
       @user = User.find_or_create_by(:name => params[:user][:user_name])
       login(@user)
       redirect_to root_path
