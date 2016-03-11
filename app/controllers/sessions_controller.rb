@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       "user" => user_name,
       "password" => password
     }
-    puts result
+    puts @response
     result = Hash.from_xml(@response.body)
 
     if result["result"]["status"]["code"] == "ok"
