@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     @user = User.find_or_create_by(:name => user_name)
     login(@user)
     redirect_to root_path
+    
   end
 
   def destroy
