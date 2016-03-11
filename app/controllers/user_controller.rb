@@ -1,5 +1,6 @@
 class UserController < ApplicationController
-
+  skip_before_filter :verify_authenticity_token
+  
   def checkin
     @meeting = Meeting.where(epic: params[:epic], meeting_type: params[:meeting_type]).first
     @checkin = MeetingUser.new(user_id: current_user.id, meeting_id: @meeting.id)
