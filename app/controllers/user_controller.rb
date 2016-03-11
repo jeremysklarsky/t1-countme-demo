@@ -10,10 +10,12 @@ class UserController < ApplicationController
   end
 
   def hipchat
-    message = params[:body][:item][:message][:message].split(" ")
+    message = params[:item][:message][:message].split(" ")
     if message.first == '/checkin'
-      @user = User.find_by_name(message[1])
-      @meeting = Meeting.where(epic: message[2], meeting_type: 'T1 Breakfast').first
+      @hipchat_id = params["item"]["message"]["from"]["id"]
+      @username = finduser(@hipchat_id)
+      @meeting = Meeting.where(epic: message[1], meeting_type: 'T1 Breakfast').first
+      @user = User.find_or_create_by(name: @username)
       @checkin = MeetingUser.new(user_id: @user.id, meeting_id: @meeting.id)
       @checkin.save
     end
@@ -23,4 +25,12 @@ class UserController < ApplicationController
       }.to_json
   end
 
+  def finduser(id)
+    # url = "https://api.hipchat.com/v2/user/?auth_token=YOUR_TOKEN"
+    @response = Unirest.get "https://api.hipchat.com/v2/user/#{id}?auth_token=#{ENV['hipchat_token']}"
+    @response.body["email"].split("@").first
+  end
+
 end
+
+# https://api.hipchat.com/v2/user/1328874?auth_token=QPPSgRcq8jpBST1Myn9gpcCUpPLVKt2Z2AUS13M5
