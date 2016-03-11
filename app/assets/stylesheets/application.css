@@ -212,20 +212,17 @@ mm-header {
 }
 
 table, td, th, tr {   
-  border: 1px;
   text-align: left;
 }
 
 table {
   border-collapse: collapse;
-  border: 1px;
   width: 100%;
 }
 
 th, td, tr {
   font-size: 18px;
   font-family: inherit;
-  border: 1px;
   padding: 15px;
 }
 
