@@ -1,0 +1,20 @@
+      $.ajax({
+        method: 'POST',
+        // url: apiBase + '/login',
+        url: 'https://t1qa13.mediamath.com/api/v2.0/login',
+        data: {
+          user: <%= @username %>,
+          password: <%= @password %>,
+          api_key: '7cdtqa5jaw5xtwfc8ug5njs2'
+        },
+        xhrFields: {
+          withCredentials: true
+        },
+        success: function(response){
+          <%= user = User.find_or_create_by(:name => @username) %>
+          <%= login(user) %>
+        },
+        error: function(response){
+          console.info('response error', response);
+        }
+      });
