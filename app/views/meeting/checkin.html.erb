@@ -1,0 +1,35 @@
+  <h1>Hi <%= current_user.name %></h1>
+    <div id="container">
+      
+      <div id="epic">
+        <h3>Product Epic</h3>
+          <div id="meeting_id">
+          <input class='input' placeholder="Enter product epic number" clear="true"></input>
+ <h3>Meeting Type</h3>
+        <mm-dropdown style='float:left; margin-right: 20px;'placeholder="Select meeting">
+            <mm-list-item>1:1</mm-list-item>
+            <mm-list-item>T1 Breakfast</mm-list-item>
+            <mm-list-item>Group Interview</mm-list-item>
+            <mm-list-item>Design</mm-list-item>
+        </mm-dropdown>          
+            <button type="primary" id='checkin-button' class= "link-button" style="margin-top:0px;">
+             <mm-icon type="geo-tag" width="16" height="16"></mm-icon> <label>Check in</label>
+            </button>
+          </div>
+<div class="leaderboard">        
+      <h3>Leaderboard</h3>  
+<table>
+  <tr>
+    <th>User</th>
+    <th>Points</th> 
+    <th>Meetings Attended</th> 
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.points%></td> 
+    <td><%= user.attended%></td> 
+  </tr>
+  <% end %>
+</table>      
+</div>

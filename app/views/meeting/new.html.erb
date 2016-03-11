@@ -1,0 +1,28 @@
+  <h1>Hi <%= current_user.name %> </h1>
+    <div id="container">
+      <div id="epic">
+        <h2>Product Epic</h3>
+          <div id="product_epic">
+            <input class='input' placeholder="Enter product epic number" clear="true"></input>
+          </div>
+        
+      <div id="generate">
+        <button class='link-button' id="create-epic">
+          <label>Create Epic</label>
+        </button>
+      </div>
+      
+    </div>
+<h2 style="clear:left;">My Meetings</h2>
+<table>
+  <tr>
+    <th>Meeting Name</th>
+    <th>Attendees</th> 
+  </tr>
+  <% @meetings.each do |meeting| %>
+  <tr>
+    <td><%= meeting.display_name %></td>
+    <td><%= meeting.user_count%></td> 
+  </tr>
+  <% end %>
+</table>

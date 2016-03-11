@@ -1,0 +1,16 @@
+<div class="col-lg-6 col-lg-offset-3">
+  <div class="well bs-component">
+    <h3 class="login">T1 Count Me!</h3>
+      <p id="notice" class="col-lg-offset-3"><%= flash[:notice] %></p>
+      <%= form_for(:user, url: sessions_path) do |f| %>
+      <p>
+      <%= f.text_field :user_name, :placeholder => "T1 Username", class: "input" %>
+      </p>
+      <p>
+      <%= f.password_field :password, :placeholder => "Password", class: "input" %>
+      </p>
+      <%= f.submit "Log In", class: "btn-submit" %>
+      <% end %>
+      <p></p>
+  </div>
+</div>

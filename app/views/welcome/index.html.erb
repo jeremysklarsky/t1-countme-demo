@@ -1,0 +1,10 @@
+<h3 class="welcome"><%= @welcome_message %></h3>
+<% if current_user %>
+<div class='button-container'>
+  <%= button_to "Create Meeting", new_meeting_path, :class => 'link-button', :id => "create-meeting-button", :method => :get %>
+  <%= button_to "Check In", checkin_path, :class => 'link-button', :id => "checkin-button", :method => :get %>
+</div>
+<% end %>
+
+  
+  
