@@ -42,7 +42,9 @@ class SessionsController < ApplicationController
     password = params[:user][:password]
     @user = User.find_or_create_by(:name => user_name)
     login(@user)
-    redirect_to root_path
+    respond_to do |format|
+      format.js {render inline: "location.href = ('/');" }
+    end
     
 # >>>>>>> no-auth
   end
