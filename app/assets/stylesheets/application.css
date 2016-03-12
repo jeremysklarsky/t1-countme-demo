@@ -211,6 +211,10 @@ mm-header {
   background: #7ed321;
 }
 
+#checkin-button-link {
+  background: #7ed321;
+}
+
 table, td, th, tr {   
   text-align: left;
   border: 1px solid black;

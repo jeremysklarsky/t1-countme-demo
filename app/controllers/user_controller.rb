@@ -1,13 +1,13 @@
 class UserController < ApplicationController
   skip_before_action :verify_authenticity_token
-  
+
   def checkin
     @meeting = Meeting.where(epic: params[:epic], meeting_type: params[:meeting_type]).first
     @checkin = MeetingUser.new(user_id: current_user.id, meeting_id: @meeting.id)
     @checkin.save
     respond_to do |format|
       format.js {render inline: "location.reload();" }
-    end    
+    end
   end
 
   def hipchat
@@ -38,5 +38,3 @@ private
   end
 
 end
-
-# https://api.hipchat.com/v2/user/1328874?auth_token=QPPSgRcq8jpBST1Myn9gpcCUpPLVKt2Z2AUS13M5
